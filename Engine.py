@@ -5,7 +5,10 @@ class Engine:
     def __init__(self, word, num_of_remaind_try):
         self.word = word
         self.index_to_skip = []
-        self.num_of_remaind_try = num_of_remaind_try
+        self._num_of_remaind_try = num_of_remaind_try
+
+    def end_of_game(self):
+        return self._num_of_remaind_try == 0
 
     def round(self, player_answer):
         bulls = count_match_char_in_place(player_answer)
@@ -29,3 +32,6 @@ class Engine:
             if char in self.word:
                 counter += 1
         return counter
+
+    def get_num_of_remaind_try(self):
+        return self.num_of_remaind_try
