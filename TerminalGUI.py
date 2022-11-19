@@ -10,6 +10,7 @@ class TerminalGUI:
         print(f"Bulls: {self.bulls}")
         print(f"Cows: {self.cows}")
         print(f"{self.word}")
+        print(len(self.word))
         print("_ " * len(self.word))
         self.left_guest_num-=1
 

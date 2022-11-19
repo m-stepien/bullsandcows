@@ -9,7 +9,10 @@ class Dictionary:
     def read_from_file(self):
         try:
             with open(self.resource_path, "r") as resource:
-                return resource.readlines()
+                word_list = []
+                for line in resource.readlines():
+                    word_list.append(line.replace("\n", ""))
+                return word_list
         except OSError:
             print("Plik ze sciezki nie istnieje lub zostal uszkodzony")
 

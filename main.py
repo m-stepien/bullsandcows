@@ -3,7 +3,9 @@ from Dictionary import Dictionary
 from Engine import Engine
 from TerminalGUI import TerminalGUI
 from Stats import Stats
+import tkinter
 if __name__ == '__main__':
+
     config_manager = ConfigManager(r"config.xml")
     config_manager.read_config()
     config_manager.write_config()
