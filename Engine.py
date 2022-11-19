@@ -7,14 +7,18 @@ class Engine:
         self.index_to_skip = []
         self._num_of_remaind_try = num_of_remaind_try
 
-    def end_of_game(self):
-        return self._num_of_remaind_try == 0
+    #TODO warunek konczacy gre gdy zgadnie wczesniej
+    def end_of_game(self, bulls):
+        if self._num_of_remaind_try == 0 or bulls == len(self.word):
+            return True
+        else:
+            return False
 
     def round(self, player_answer):
-        bulls = count_match_char_in_place(player_answer)
-        cows = count_match_char_wrong_place(player_answer)
+        bulls = self.count_match_char_in_place(player_answer)
+        cows = self.count_match_char_wrong_place(player_answer)
         result = Stats(bulls, cows)
-        self.num_of_remaind_try -= 1
+        self._num_of_remaind_try -= 1
         return result
 
     def count_match_char_in_place(self, player_answer):
@@ -26,6 +30,7 @@ class Engine:
                 self.index_to_skip.append(e)
         return counter
 
+    #TODO do przemyslenia czy potrzebne usuwanie znalezionych znakow z powyzszej metody czy spowoduje powtorzenia
     def count_match_char_wrong_place(self, player_answer):
         counter = 0
         for char in player_answer:

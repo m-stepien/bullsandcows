@@ -1,16 +1,17 @@
-class TerminalGUI(Gui):
-    def __init__(self):
+class TerminalGUI:
+    def __init__(self, left_guest_num, word):
         self.left_guest_num = left_guest_num
         self.word = word
         self.cows = 0
         self.bulls = 0
 
     def show_game_screen(self):
-        print("Guest left {}", self.left_guest_num)
-        print("Bulls: {}", self.bulls)
-        print("Cows: {}", self.cows)
-        print("\t\t\t{}", word)
-        print("_ " * len(word))
+        print(f"Guest left {self.left_guest_num}")
+        print(f"Bulls: {self.bulls}")
+        print(f"Cows: {self.cows}")
+        print(f"{self.word}")
+        print("_ " * len(self.word))
+        self.left_guest_num-=1
 
     def showStartMenu(self):
         print("1. Nowa gra\n2. Zasady gry\n3. Ustawienia\4. Zakoncz gre")
@@ -24,4 +25,5 @@ class TerminalGUI(Gui):
     def show_game_rule(self):
         pass
 
-    def update_game_display(self)
+    def update_game_display(self):
+        pass

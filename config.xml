@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <configurations>
     <configuration version="default">
         <system>Windows</system>
@@ -6,5 +5,40 @@
         <difficulty_level>Easy</difficulty_level>
         <number_of_try>10</number_of_try>
     </configuration>
+<configuration version="current">
+        <system>Windows</system>
+        <gui>Gui</gui>
+        <difficulty_level>Hard</difficulty_level>
+        <number_of_try>20</number_of_try>
+    </configuration>
+<configuration version="current">
+        <system>Windows</system>
+        <gui>Gui</gui>
+        <difficulty_level>Hard</difficulty_level>
+        <number_of_try>20</number_of_try>
+    </configuration>
+<configuration version="current">
+        <system>Windows</system>
+        <gui>Gui</gui>
+        <difficulty_level>Hard</difficulty_level>
+        <number_of_try>20</number_of_try>
+    </configuration>
+<configuration version="current">
+        <system>Windows</system>
+        <gui>Gui</gui>
+        <difficulty_level>Hard</difficulty_level>
+        <number_of_try>20</number_of_try>
+    </configuration>
+<configuration version="current">
+        <system>Windows</system>
+        <gui>Gui</gui>
+        <difficulty_level>Hard</difficulty_level>
+        <number_of_try>20</number_of_try>
+    </configuration>
+<configuration version="current">
+        <system>Windows</system>
+        <gui>Gui</gui>
+        <difficulty_level>Hard</difficulty_level>
+        <number_of_try>20</number_of_try>
+    </configuration>
 </configurations>
-        <!--<time_remaind>None</time_remaind>-->
