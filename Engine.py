@@ -7,7 +7,6 @@ class Engine:
         self.index_to_skip = []
         self._num_of_remaind_try = num_of_remaind_try
 
-
     def end_of_game(self, bulls):
         if self._num_of_remaind_try == 0 or bulls == len(self.word):
             return True
@@ -31,7 +30,6 @@ class Engine:
                 self.index_to_skip.append(e)
         return counter
 
-    #TODO do przemyslenia czy potrzebne usuwanie znalezionych znakow z powyzszej metody czy spowoduje powtorzenia
     def count_match_char_wrong_place(self, player_answer):
         counter = 0
         for e, char in enumerate(player_answer):

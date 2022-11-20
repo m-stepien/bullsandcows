@@ -1,44 +1,12 @@
 <configurations>
-    <configuration version="default">
-        <system>Windows</system>
-        <gui>Terminal</gui>
-        <difficulty_level>Easy</difficulty_level>
-        <number_of_try>10</number_of_try>
+    <configuration version="current">
+        <gui>mmmmmm</gui>
+        <difficulty_level>fag</difficulty_level>
+        <number_of_try>3</number_of_try>
     </configuration>
 <configuration version="current">
-        <system>Windows</system>
-        <gui>Gui</gui>
-        <difficulty_level>Hard</difficulty_level>
-        <number_of_try>20</number_of_try>
-    </configuration>
-<configuration version="current">
-        <system>Windows</system>
-        <gui>Gui</gui>
-        <difficulty_level>Hard</difficulty_level>
-        <number_of_try>20</number_of_try>
-    </configuration>
-<configuration version="current">
-        <system>Windows</system>
-        <gui>Gui</gui>
-        <difficulty_level>Hard</difficulty_level>
-        <number_of_try>20</number_of_try>
-    </configuration>
-<configuration version="current">
-        <system>Windows</system>
-        <gui>Gui</gui>
-        <difficulty_level>Hard</difficulty_level>
-        <number_of_try>20</number_of_try>
-    </configuration>
-<configuration version="current">
-        <system>Windows</system>
-        <gui>Gui</gui>
-        <difficulty_level>Hard</difficulty_level>
-        <number_of_try>20</number_of_try>
-    </configuration>
-<configuration version="current">
-        <system>Windows</system>
-        <gui>Gui</gui>
-        <difficulty_level>Hard</difficulty_level>
-        <number_of_try>20</number_of_try>
+        <gui>mmmmmm</gui>
+        <difficulty_level>fag</difficulty_level>
+        <number_of_try>3</number_of_try>
     </configuration>
 </configurations>

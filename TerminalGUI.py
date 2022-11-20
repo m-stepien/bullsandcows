@@ -12,7 +12,7 @@ class TerminalGUI:
         print(f"{self.word}")
         print(len(self.word))
         print("_ " * len(self.word))
-        self.left_guest_num-=1
+        self.left_guest_num -= 1
 
     def showStartMenu(self):
         print("1. Nowa gra\n2. Zasady gry\n3. Ustawienia\4. Zakoncz gre")

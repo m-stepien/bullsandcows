@@ -1,27 +1,29 @@
 import xml.etree.ElementTree as ET
 import platform
+from Config import Config
 
-#TODO wyciagnac sprawdzanie istnienia config current do osobnej metody
 
 class ConfigManager:
     def __init__(self, config_path):
         self.config_path = config_path
         self.config = None
 
-    def write_config(self):
-        #TODO istnieje mozliwosc zapisania wielu config current powinien zawszy byc 1 lub 0
-        sys = platform.uname()[0]
-        gui = "Gui"
-        diff_lvl = "Hard"
-        try_number = 20
-        new_conf = self.config
-        new_conf.attrib["version"] = "current"
-        new_conf.find("system").text = sys
-        new_conf.find("gui").text = gui
-        new_conf.find("difficulty_level").text = diff_lvl
-        new_conf.find("number_of_try").text = str(try_number)
+    def write_config(self, config):
+        #TODO nadpisuje default poniewaz referencja wciaz na nia wskazuje trzeba zmienic tworzenie nowego konfiga zeby uzywal xml.Element()
         tree = ET.parse(self.config_path)
         root = tree.getroot()
+        root.append(self.__find_config__(root.findall("configuration"), "default"))
+        new_conf = self.__find_config__(root.findall("configuration"), "default")
+        tree.write(self.config_path)
+        new_conf.attrib["version"] = "current"
+        new_conf.find("gui").text = config.gui
+        new_conf.find("difficulty_level").text = config.difficulty_level
+        new_conf.find("number_of_try").text = config.number_of_try
+        conf_curr = self.__find_config__(root.findall("configuration"), "current")
+        if conf_curr is not None:
+            print(conf_curr.get("version"))
+            root.remove(conf_curr)
+            print("dajkda")
         root.append(new_conf)
         tree.write(self.config_path)
 
@@ -29,31 +31,32 @@ class ConfigManager:
         tree = ET.parse(self.config_path)
         root = tree.getroot()
         configs_list = root.findall("configuration")
-        for config in configs_list:
-            if config.get("version") == "current":
-                self.config = config
-        if self.config is None:
+        config_xml = self.__find_config__(configs_list, "current")
+        if config_xml is None:
             try:
-                for config in configs_list:
-                    if config.get("version") == "default":
-                        self.config = config
+                config_xml = self.__find_config__(configs_list, "default")
             # NWM
             except FileExistsError:
                 print("Plik konfiguracyjny jest uszkodzony")
                 exit(1)
-
-    def get_current_system(self):
-        return self.config.find("system").text
-
-    def get_current_gui(self):
-        return self.config.find("gui").text
-
-    def get_current_difficulty_level(self):
-        return self.config.find("difficulty_level").text
-
-    def get_number_of_try(self):
-        return int(self.config.find("number_of_try").text)
-
+        self.config = Config()
+        self.config.set_from_xml(config_xml)
 
     def check_system(self):
         return platform.uname()[0]
+
+    def __find_config__(self, config_list, version):
+        for config in config_list:
+            if config.get("version") == version:
+                return config
+        return None
+
+    def reset_config(self):
+        tree = ET.parse(self.config_path)
+        root = tree.getroot()
+        conf_curr = self.__find_config__(root.findall("configuration"), "current")
+        if conf_curr is not None:
+            root.remove(conf_curr)
+        tree.write(self.config_path)
+        self.read_config()
+
