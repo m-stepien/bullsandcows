@@ -9,22 +9,26 @@ class ConfigManager:
         self.config = None
 
     def write_config(self, config):
-        #TODO nadpisuje default poniewaz referencja wciaz na nia wskazuje trzeba zmienic tworzenie nowego konfiga zeby uzywal xml.Element()
+        # TODO nadpisuje default poniewaz referencja wciaz na nia wskazuje trzeba zmienic tworzenie nowego konfiga
+        #  zeby uzywal xml.Element()
         tree = ET.parse(self.config_path)
         root = tree.getroot()
-        root.append(self.__find_config__(root.findall("configuration"), "default"))
-        new_conf = self.__find_config__(root.findall("configuration"), "default")
-        tree.write(self.config_path)
-        new_conf.attrib["version"] = "current"
-        new_conf.find("gui").text = config.gui
-        new_conf.find("difficulty_level").text = config.difficulty_level
-        new_conf.find("number_of_try").text = config.number_of_try
+        new_config = ET.Element("configuration")
+        new_config.attrib["version"] = "current"
+        gui_ET = ET.Element("gui")
+        gui_ET.text = config.gui
+        new_config.append(gui_ET)
+        diff_ET = ET.Element("difficulty_level")
+        diff_ET.text = config.difficulty_level
+        new_config.append(diff_ET)
+        num_ET = ET.Element("number_of_try")
+        num_ET.text = str(config.number_of_try)
+        new_config.append(num_ET)
         conf_curr = self.__find_config__(root.findall("configuration"), "current")
         if conf_curr is not None:
             print(conf_curr.get("version"))
             root.remove(conf_curr)
-            print("dajkda")
-        root.append(new_conf)
+        root.append(new_config)
         tree.write(self.config_path)
 
     def read_config(self):
@@ -59,4 +63,3 @@ class ConfigManager:
             root.remove(conf_curr)
         tree.write(self.config_path)
         self.read_config()
-

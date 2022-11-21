@@ -5,7 +5,7 @@ class Engine:
     def __init__(self, word, num_of_remaind_try):
         self.word = word
         self.index_to_skip = []
-        self._num_of_remaind_try = num_of_remaind_try
+        self._num_of_remaind_try = int(num_of_remaind_try)
 
     def end_of_game(self, bulls):
         if self._num_of_remaind_try == 0 or bulls == len(self.word):

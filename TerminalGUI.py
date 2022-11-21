@@ -1,6 +1,6 @@
 class TerminalGUI:
     def __init__(self, left_guest_num, word):
-        self.left_guest_num = left_guest_num
+        self.left_guest_num = int(left_guest_num)
         self.word = word
         self.cows = 0
         self.bulls = 0
@@ -17,7 +17,7 @@ class TerminalGUI:
     def showStartMenu(self):
         print("1. Nowa gra\n2. Zasady gry\n3. Ustawienia\4. Zakoncz gre")
 
-    def showEngGameResult(self):
+    def showEndGameResult(self):
         pass
 
     def show_configuration_option(self):

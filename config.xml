@@ -1,12 +1,7 @@
 <configurations>
-    <configuration version="current">
-        <gui>mmmmmm</gui>
-        <difficulty_level>fag</difficulty_level>
-        <number_of_try>3</number_of_try>
+    <configuration version="default">
+        <gui>Terminal</gui>
+        <difficulty_level>Easy</difficulty_level>
+        <number_of_try>10</number_of_try>
     </configuration>
-<configuration version="current">
-        <gui>mmmmmm</gui>
-        <difficulty_level>fag</difficulty_level>
-        <number_of_try>3</number_of_try>
-    </configuration>
-</configurations>
+<configuration version="current"><gui>gui</gui><difficulty_level>hard</difficulty_level><number_of_try>60</number_of_try></configuration></configurations>
