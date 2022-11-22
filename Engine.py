@@ -2,23 +2,18 @@ from Stats import Stats
 
 
 class Engine:
-    def __init__(self, word, num_of_remaind_try):
+    def __init__(self, word):
         self.word = word
         self.index_to_skip = []
-        self._num_of_remaind_try = int(num_of_remaind_try)
 
-    def end_of_game(self, bulls):
-        if self._num_of_remaind_try == 0 or bulls == len(self.word):
-            return True
-        else:
-            return False
+    def is_win(self, bulls):
+        return bulls == len(self.word)
 
     def round(self, player_answer):
         self.index_to_skip = []
         bulls = self.count_match_char_in_place(player_answer)
         cows = self.count_match_char_wrong_place(player_answer)
         result = Stats(bulls, cows)
-        self._num_of_remaind_try -= 1
         return result
 
     def count_match_char_in_place(self, player_answer):
