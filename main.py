@@ -15,6 +15,7 @@ if __name__ == '__main__':
     gui = TkinterGui()
     while True:
         option = gui.showStartMenu()
+
         if gui.opt is not None:
             if option == 1:
                 validator = Validator()
