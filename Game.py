@@ -14,15 +14,19 @@ class Game:
         i = 0
         word = self.dictionary.choose_random_word()
         self.engine.word = word
-        result = Stats.Stats(0,0)
+        result = Stats.Stats(0, 0)
+        valid_fail=False
         while i < self.number_of_try:
             # self.gui.reload()
-            self.gui.game_screen(self.number_of_try - i, word,result)
+            answer = self.gui.game_screen(self.number_of_try - i, word,result, valid_fail)
             # self.gui.show_len_of_word(word)
             # answer = self.gui.get_answer()
-            answer = "a"
+            print(answer)
+            if valid_fail:
+                self.gui.destroy_elems(self.gui.fr_valid, self.gui.lb_valid)
+            valid_fail = False
             if not self.validator.is_word(answer) or not self.validator.is_valid(answer):
-                print("Bledna odpowiedz")
+                valid_fail = True
                 continue
             i += 1
             # result = self.engine.round(answer)

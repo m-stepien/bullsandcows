@@ -29,12 +29,13 @@ class TkinterGui:
     def stay_active(self):
         self.root.mainloop()
 
-    def game_screen(self, try_remind, word, result):
+    def game_screen(self, try_remind, word, result, valid):
 
         fr_button = Frame(self.root, width=25, height=15)
         photo = PhotoImage(file="resource/back_arr.png")
         photoimage = photo.subsample(30, 30)
-        button_back = Button(fr_button, command=lambda: self.get_back_to_menu(word_fr,frame_try_rem,label_try_rem,frame_result,label_result, frame_button,button_send,fr_button,button_back),
+        x=lambda: self.destroy_elems(word_fr,frame_try_rem,label_try_rem,frame_result,label_result, frame_button,button_send,fr_button,button_back)
+        button_back = Button(fr_button, command=x,
                              image=photoimage)
         fr_button.pack(side=TOP, anchor=NW)
         button_back.pack()
@@ -46,15 +47,28 @@ class TkinterGui:
         label_result = Label(frame_result, text=result)
         frame_result.pack(side=TOP, anchor=NW)
         label_result.pack()
+        if valid:
+            self.fr_valid = Frame(self.root)
+            self.lb_valid = Label(self.fr_valid, text="Nie mozna udzielic takiej odpowiedzi")
+            self.fr_valid.pack()
+            self.lb_valid.pack()
         word_fr = self.show_len_of_word("abct")
         frame_button = Frame(self.root)
-        button_send = Button(frame_button, command=self.send, text="Wyslij")
+        button_send = Button(frame_button, command=lambda :self.send(x), text="Wyslij")
         frame_button.pack(side=RIGHT, anchor=SE, padx=5,pady=5)
         button_send.pack()
 
         self.stay_active()
-    def send(self):
-        pass
+        return self.answer
+    def send(self, exp):
+        answer = ""
+        for entry in self.char_entry:
+            answer+=entry.get()
+
+        exp()
+        self.answer = answer
+
+
     def show_game_rule(self):
         GAME_RULE = 'Tu beda zapisane zasady gry\nCiekawe czy \\ndziala'
         fr_info = Frame(self.root, width=400, height=185)
@@ -62,7 +76,7 @@ class TkinterGui:
         fr_button = Frame(self.root, width=25, height=15)
         photo = PhotoImage(file="resource/back_arr.png")
         photoimage = photo.subsample(30, 30)
-        button_back = Button(fr_button, command=lambda: self.get_back_to_menu(fr_info, info, fr_button, button_back),
+        button_back = Button(fr_button, command=lambda: self.destroy_elems(fr_info, info, fr_button, button_back),
                              image=photoimage)
         fr_button.pack(side=TOP, anchor=NW)
         button_back.pack()
@@ -73,25 +87,27 @@ class TkinterGui:
     def show_len_of_word(self, word):
         word_frame = Frame(self.root, height=20)
         char_frame = []
-        char_label = []
+        self.char_entry = []
         for ch in range(len(word)):
             fr = Frame(word_frame)
             char_frame.append(fr)
             fr.pack(side=LEFT, fill=BOTH, expand=True)
             ent = Entry(fr, text="_", font=("Arial", 25), width=1, textvariable=f"side{ch}")
-            char_label.append(ent)
+            self.char_entry.append(ent)
             ent.pack()
             ent.bind("<KeyRelease>", self.go_to_next)
 
         word_frame.pack(fill=X, expand=True)
 
         return word_frame
-
-    def get_back_to_menu(self, *args):
-        self.opt = None
+    def destroy_elems(self, *args):
         for arg in args:
             arg.destroy()
-        self.root.quit()
+            self.root.quit()
+    def get_back_to_menu(self, exp):
+        self.opt = None
+        exp()
+
     def showStartMenu(self):
         fr_bt1 = Frame(self.root, width=400, height=50)
         fr_bt2 = Frame(self.root, width=400, height=50)
