@@ -1,4 +1,5 @@
 import FileWriter
+import Stats
 
 
 class Game:
@@ -13,17 +14,19 @@ class Game:
         i = 0
         word = self.dictionary.choose_random_word()
         self.engine.word = word
+        result = Stats.Stats(0,0)
         while i < self.number_of_try:
             self.gui.reload()
             self.gui.show_try_remind(self.number_of_try - i)
             self.gui.show_len_of_word(word)
+            self.gui.show_result(result)
             answer = self.gui.get_answer()
-            if not self.validator.is_word(answer) or not self.validator.is_valid(answer):
+            if not self.validator.is_word(answer) or not self.validator.is_valid(answer) or not self.validator.is_same_len(answer,len(word)):
                 print("Bledna odpowiedz")
                 continue
             i += 1
             result = self.engine.round(answer)
-            self.gui.show_result(result)
+
             if self.engine.is_win(result.bulls):
                 break
 
