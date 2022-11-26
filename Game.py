@@ -1,3 +1,6 @@
+import FileWriter
+
+
 class Game:
     def __init__(self, validator, gui, engine, dictionary, number_of_try):
         self.validator = validator
@@ -8,24 +11,25 @@ class Game:
 
     def gameplay(self):
         i = 0
-        bulls = None
         word = self.dictionary.choose_random_word()
         self.engine.word = word
         while i < self.number_of_try:
+            self.gui.reload()
+            self.gui.show_try_remind(self.number_of_try - i)
             self.gui.show_len_of_word(word)
-            answer = self.gui.get_input()
+            answer = self.gui.get_answer()
             if not self.validator.is_word(answer) or not self.validator.is_valid(answer):
                 print("Bledna odpowiedz")
                 continue
-            result = self.engine.round(answer)
-            self.gui.bulls = result.get_bulls()
-            self.gui.cows = result.get_cows()
-            self.gui.show_result()
-            if self.engine.is_win(bulls):
-                break
             i += 1
+            result = self.engine.round(answer)
+            self.gui.show_result(result)
+            if self.engine.is_win(result.bulls):
+                break
 
-        if self.engine.is_win(bulls):
-            print("Wygralem")
-        else:
-            print("Przegralem")
+        want_save = self.gui.show_win_screen(self.engine.is_win(result.bulls),word, i)
+        if want_save:
+            file_name = self.gui.get_file_name()
+            file_writer = FileWriter.FileWriter(file_name)
+            file_writer.write(self.gui.game_result_str)
+

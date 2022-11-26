@@ -17,3 +17,6 @@ class Validator:
             return False
         else:
             return True
+
+    def is_same_len(self, word, ch_word_len):
+        return len(word) == ch_word_len

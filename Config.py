@@ -5,7 +5,7 @@ class Config:
     def __init__(self):
         self.gui = None
         self.difficulty_level = None
-        self.number_of_try =None
+        self.number_of_try = None
 
     def set_from_xml(self, config_xml):
         self.gui = config_xml.find("gui").text
@@ -16,3 +16,6 @@ class Config:
         self.gui = gui
         self.difficulty_level = diff_lvl
         self.number_of_try = n_of_try
+    def __str__(self):
+        return f"KONFIGURACJA\nGui:\t{self.gui}\nPoziom trudnosci:\t{self.difficulty_level}\n" \
+               f"Liczba prob:\t{self.number_of_try}"
