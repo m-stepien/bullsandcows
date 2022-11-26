@@ -4,4 +4,4 @@ class Stats:
         self.cows = cows
 
     def __str__(self):
-        return "Bulls: {}\nCows: {}".format(self.bulls, self.cows)
+        return "Bulls:\t{}\nCows:\t{}".format(self.bulls, self.cows)

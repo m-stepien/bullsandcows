@@ -14,7 +14,7 @@ if __name__ == '__main__':
     dictionary = Dictionary("resource/dictionary.txt")
     gui = TkinterGui()
     while True:
-        option = gui.showStartMenu()
+        option = gui.show_start_menu()
 
         if gui.opt is not None:
             if option == 1:

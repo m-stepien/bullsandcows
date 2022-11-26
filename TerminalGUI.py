@@ -26,7 +26,7 @@ class TerminalGUI:
         self.reload()
         return response
 
-    def show_win_screen(self, is_win, word, num_try):
+    def show_end_screen(self, is_win, word, num_try):
         self.create_result_of_game(is_win, word, num_try)
         print(self.game_result_str)
         print("Jesli chcesz zapisac wynik kliknij 1")
@@ -36,12 +36,6 @@ class TerminalGUI:
     def create_result_of_game(self, is_win, word, num_try):
         header = "Zwyciestwo" if is_win else "Przegrana"
         self.game_result_str = f"{header}\nSlowo:\t{word}\nLiczba prob:\t {num_try}"
-
-
-
-
-    def lose_screen(self):
-        print("Przegrales")
 
     def show_configuration(self, config):
         self.reload()

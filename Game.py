@@ -9,6 +9,7 @@ class Game:
         self.engine = engine
         self.dictionary = dictionary
         self.number_of_try = int(number_of_try)
+        self.answer = None
 
     def gameplay(self):
         i = 0
@@ -21,7 +22,8 @@ class Game:
             answer = self.gui.game_screen(self.number_of_try - i, word,result, valid_fail)
             # self.gui.show_len_of_word(word)
             # answer = self.gui.get_answer()
-            print(answer)
+            if self.gui.opt is None:
+                break
             if valid_fail:
                 self.gui.destroy_elems(self.gui.fr_valid, self.gui.lb_valid)
             valid_fail = False
@@ -29,16 +31,12 @@ class Game:
                 valid_fail = True
                 continue
             i += 1
-            # result = self.engine.round(answer)
-            # self.gui.show_result(result)
-            if self.gui.opt is None:
-                break
+            result = self.engine.round(answer)
             if self.engine.is_win(result.bulls):
                 break
-
-        # want_save = self.gui.show_win_screen(self.engine.is_win(result.bulls),word, i)
-        # if want_save:
-        #     file_name = self.gui.get_file_name()
-        #     file_writer = FileWriter.FileWriter(file_name)
-        #     file_writer.write(self.gui.game_result_str)
+        if self.gui.opt:
+            want_save = self.gui.show_end_screen(self.engine.is_win(result.bulls), word, i)
+            if want_save:
+                file_writer = FileWriter.FileWriter(self.gui.file_name)
+                file_writer.write(self.gui.game_result_str)
 
