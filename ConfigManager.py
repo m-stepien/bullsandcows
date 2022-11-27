@@ -9,20 +9,28 @@ class ConfigManager:
         self.config = None
 
     def write_config(self, config):
-        # TODO nadpisuje default poniewaz referencja wciaz na nia wskazuje trzeba zmienic tworzenie nowego konfiga
-        #  zeby uzywal xml.Element()
         tree = ET.parse(self.config_path)
         root = tree.getroot()
         new_config = ET.Element("configuration")
         new_config.attrib["version"] = "current"
         gui_ET = ET.Element("gui")
-        gui_ET.text = config.gui
+        if config.gui is not None:
+            gui_ET.text = config.gui
+        else:
+            gui_ET.text = self.config.gui
         new_config.append(gui_ET)
         diff_ET = ET.Element("difficulty_level")
-        diff_ET.text = config.difficulty_level
+        if config.difficulty_level is not None:
+            diff_ET.text = config.difficulty_level
+        else:
+            diff_ET.text = self.config.difficulty_level
+
         new_config.append(diff_ET)
         num_ET = ET.Element("number_of_try")
-        num_ET.text = str(config.number_of_try)
+        if config.number_of_try is not None:
+            num_ET.text = str(config.number_of_try)
+        else:
+            num_ET.text = str(self.config.number_of_try)
         new_config.append(num_ET)
         conf_curr = self.__find_config__(root.findall("configuration"), "current")
         if conf_curr is not None:
@@ -30,6 +38,7 @@ class ConfigManager:
             root.remove(conf_curr)
         root.append(new_config)
         tree.write(self.config_path)
+        self.read_config()
 
     def read_config(self):
         tree = ET.parse(self.config_path)
