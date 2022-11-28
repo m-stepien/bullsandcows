@@ -46,7 +46,7 @@ class TerminalGUI:
         while True:
             print("1. Zmiana opcji gui\n2. Zmien poziom trudnosci\n3. Zmien liczbe prob\n4. Reset\n5. Wroc")
             choose = input()
-            while choose not in ["1","2","3", "4", "5"]:
+            while choose not in ["1", "2", "3", "4", "5"]:
                 print("Niestety nie ma takiej opcji")
                 choose = input()
             if choose == "1":
@@ -92,7 +92,7 @@ class TerminalGUI:
                     except ValueError:
                         print("Podano zla liczbe")
                     else:
-                        if(num_try<1 or num_try>20):
+                        if (num_try < 1 or num_try > 20):
                             print("Podano zla liczbe2")
                         else:
                             break
@@ -102,7 +102,6 @@ class TerminalGUI:
             elif choose == "5":
                 break
         return (gui, diff_lvl, num_try)
-
 
     def show_game_rule(self):
         self.reload()
@@ -115,6 +114,10 @@ class TerminalGUI:
 
     def no_such_option_mess(self):
         print("Niestety nie ma takiej opcji")
+
+    def file_already_exist(self):
+        print("Plik o takiej nazwie juz istnieje.\nJesli chcesz go nadpisac wcisniej 1")
+        return True if input() == "1" else False
 
     def reload(self):
         if os.getenv("PYCHARM_HOSTED"):

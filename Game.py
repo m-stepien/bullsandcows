@@ -34,5 +34,9 @@ class Game:
         if want_save:
             file_name = self.gui.get_file_name()
             file_writer = FileWriter.FileWriter(file_name)
+            if file_writer.check_is_file():
+                want_override = self.gui.file_already_exist()
+                if not want_override:
+                    return
             file_writer.write(self.gui.game_result_str)
 
