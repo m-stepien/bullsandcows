@@ -106,9 +106,12 @@ class TerminalGUI:
     def show_game_rule(self):
         self.reload()
         print("""
-        Tu bedzie
-        opis zasad
-        gry
+Tekstowa gra w wktorej komputer (Host) losuje slowo, ktore jest izogramem (izogram jest to wyraz
+w ktorym nie powtarzaja sie zadne litery) i informuje uzytkownika (Guesser) o ilosci liter
+w slowie. Uzytkownik (Guesser) stara sie zgadnac co to za slowo. Komputer (Host) po kazdej probie
+zwraca liczbe Cows & Bulls. Liczba przy slowie Cows oznacza litere wystepujaca w slowie lecz na zlej pozycji,
+liczba przy slowie Bulls oznacza poprawna litere na poprawnej pozycji. Gra konczy sie kiedy
+liczba przy Bulls bedzie taka sama jak dlugosc slowa wylosowanego przez komputer.
         """)
         input("Nacisinj Enter aby wrocic do menu")
 

@@ -7,7 +7,7 @@ class Validator:
         for char in word:
             if word.count(char) > 1:
                 return False
-        return True
+        return True3
 
     def is_word(self, word):
         word = word.upper()

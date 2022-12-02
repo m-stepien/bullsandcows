@@ -19,7 +19,6 @@ class Engine:
         return result
 
     def count_match_char_in_place(self, player_answer):
-        # assum player_answer word sa tej samej dlugosci
         counter = 0
         for e, char in enumerate(self.word):
             if char == player_answer[e]:
