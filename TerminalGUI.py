@@ -135,4 +135,5 @@ liczba przy Bulls bedzie taka sama jak dlugosc slowa wylosowanego przez komputer
 
     def file_already_exist(self):
         print("Plik o takiej nazwie juz istnieje.\nJesli chcesz go nadpisac wcisniej 1")
+        print("fdaljkfnad")
         return True if input() == "1" else False
