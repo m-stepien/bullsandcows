@@ -7,8 +7,6 @@ class Engine:
         self.index_to_skip = []
 
     def is_win(self, bulls):
-        print(bulls)
-        print(self.word)
         return bulls == len(self.word)
 
     def round(self, player_answer):

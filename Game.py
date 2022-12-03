@@ -1,27 +1,25 @@
 import FileWriter
 import Stats
+from Validator import Validator
 
 
 class Game:
-    def __init__(self, validator, gui, engine, dictionary, number_of_try):
-        self.validator = validator
+    def __init__(self, gui, engine, dictionary, number_of_try):
         self.gui = gui
         self.engine = engine
         self.dictionary = dictionary
+        self.engine.word = self.dictionary.choose_random_word()
+        self.validator = Validator(len(self.engine.word))
         self.number_of_try = int(number_of_try)
 
     def gameplay(self):
         i = 0
-        word = self.dictionary.choose_random_word()
-        self.engine.word = word
-        result = Stats.Stats(0,0)
+        result = Stats.Stats(0, 0)
         while i < self.number_of_try:
-            self.gui.reload()
-            self.gui.show_try_remind(self.number_of_try - i)
-            self.gui.show_len_of_word(word)
-            self.gui.show_result(result)
+            self.gui.set_guess_result(self.number_of_try - i, result, len(self.engine.word))
+            self.gui.show_result_of_guess()
             answer = self.gui.get_answer()
-            if not self.validator.is_word(answer) or not self.validator.is_valid(answer) or not self.validator.is_same_len(answer,len(word)):
+            if not self.validator.full_word_validation(answer):
                 print("Bledna odpowiedz")
                 continue
             i += 1
@@ -30,7 +28,7 @@ class Game:
             if self.engine.is_win(result.bulls):
                 break
 
-        want_save = self.gui.show_win_screen(self.engine.is_win(result.bulls),word, i)
+        want_save = self.gui.show_win_screen(self.engine.is_win(result.bulls), self.engine.word, i)
         if want_save:
             file_name = self.gui.get_file_name()
             file_writer = FileWriter.FileWriter(file_name)
@@ -39,4 +37,3 @@ class Game:
                 if not want_override:
                     return
             file_writer.write(self.gui.game_result_str)
-
