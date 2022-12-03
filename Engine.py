@@ -5,6 +5,7 @@ class Engine:
     def __init__(self, word):
         self.word = word
         self.index_to_skip = []
+
     def is_win(self, bulls):
         return bulls == len(self.word)
 
@@ -16,7 +17,6 @@ class Engine:
         return result
 
     def count_match_char_in_place(self, player_answer):
-        # assum player_answer word sa tej samej dlugosci
         counter = 0
         for e, char in enumerate(self.word):
             if char == player_answer[e]:

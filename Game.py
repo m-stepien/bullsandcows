@@ -1,33 +1,31 @@
 import FileWriter
 import Stats
+from Validator import Validator
 
 
 class Game:
-    def __init__(self, validator, gui, engine, dictionary, number_of_try):
-        self.validator = validator
+    def __init__(self, gui, engine, dictionary, number_of_try):
         self.gui = gui
         self.engine = engine
         self.dictionary = dictionary
+        self.engine.word = self.dictionary.choose_random_word()
+        self.validator = Validator(len(self.engine.word))
         self.number_of_try = int(number_of_try)
-        self.answer = None
 
     def gameplay(self):
         i = 0
         word = self.dictionary.choose_random_word()
         self.engine.word = word
         result = Stats.Stats(0, 0)
-        valid_fail=False
+        valid_fail = False
         while i < self.number_of_try:
-            # self.gui.reload()
-            answer = self.gui.game_screen(self.number_of_try - i, word,result, valid_fail)
-            # self.gui.show_len_of_word(word)
-            # answer = self.gui.get_answer()
+            answer = self.gui.game_screen(self.number_of_try - i, word, result, valid_fail)
             if self.gui.opt is None:
                 break
             if valid_fail:
                 self.gui.destroy_elems(self.gui.fr_valid, self.gui.lb_valid)
             valid_fail = False
-            if not self.validator.is_word(answer) or not self.validator.is_valid(answer):
+            if not self.validator.full_word_validation(answer):
                 valid_fail = True
                 continue
             i += 1
@@ -39,4 +37,3 @@ class Game:
             if want_save:
                 file_writer = FileWriter.FileWriter(self.gui.file_name)
                 file_writer.write(self.gui.game_result_str)
-

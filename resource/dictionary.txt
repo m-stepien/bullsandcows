@@ -4,4 +4,5 @@ loka
 zupa
 mucha
 nosaty
-muchodor
+muchodar
+samochud
