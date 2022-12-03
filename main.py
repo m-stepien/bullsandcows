@@ -8,10 +8,10 @@ from Config import Config
 if __name__ == '__main__':
     config_manager = ConfigManager(r"config.xml")
     config_manager.read_config()
-    dictionary = Dictionary("resource/dictionary.txt")
     gui = TerminalGUI()
     while True:
         config = config_manager.config
+        dictionary = Dictionary(config.difficulty_level,"resource/dictionary.txt")
         option = gui.showStartMenu()
         if option == "1":
             engine = Engine(None)

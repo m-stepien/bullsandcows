@@ -27,4 +27,4 @@ class Dictionary:
         return self.filter_dictionary[self.difficulty_level]()
 
     def choose_random_word(self):
-        return random.choice(self.word_list)
+        return random.choice(self.get_filter_word_list())

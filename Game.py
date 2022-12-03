@@ -16,12 +16,10 @@ class Game:
         i = 0
         result = Stats.Stats(0, 0)
         while i < self.number_of_try:
-            self.gui.reload()
-            self.gui.show_try_remind(self.number_of_try - i)
-            self.gui.show_len_of_word(len(self.engine.word))
-            self.gui.show_result(result)
+            self.gui.set_guess_result(self.number_of_try - i, result, len(self.engine.word))
+            self.gui.show_result_of_guess()
             answer = self.gui.get_answer()
-            if self.validator.full_word_validation(answer):
+            if not self.validator.full_word_validation(answer):
                 print("Bledna odpowiedz")
                 continue
             i += 1

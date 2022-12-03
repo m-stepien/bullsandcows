@@ -17,7 +17,7 @@ class Validator:
         return True
 
     def is_word(self):
-        pattern = "^[A-Z]+$"
+        pattern = "^[A-Za-z]+$"
         result = re.search(pattern, self.answer)
         if result is None:
             return False
@@ -25,4 +25,9 @@ class Validator:
             return True
 
     def is_same_len(self):
-        return self.l_word == len(self.answer)
+        try:
+            len_answer = len(self.answer)
+            return self.l_word == len_answer
+        except TypeError:
+            raise TypeError
+
