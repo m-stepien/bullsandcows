@@ -8,8 +8,8 @@ class Dictionary:
         self.difficulty_level = difficulty_level
         self.filter_dictionary = {
             "easy": lambda: [x for x in self.word_list if len(x) < 5],
-            "medium": lambda: [x for x in self.word_list if 5 <= len(x) <= 8],
-            "hard": lambda: [x for x in self.word_list if len(x) >= 9]
+            "medium": lambda: [x for x in self.word_list if 5 <= len(x) < 8],
+            "hard": lambda: [x for x in self.word_list if len(x) >= 8]
         }
 
     def read_from_file(self):
@@ -27,4 +27,5 @@ class Dictionary:
         return self.filter_dictionary[self.difficulty_level]()
 
     def choose_random_word(self):
-        return random.choice(self.get_filter_word_list())
+        word_filter = self.get_filter_word_list()
+        return random.choice(word_filter)

@@ -14,7 +14,7 @@ class Validator:
         for char in self.answer:
             if self.answer.count(char) > 1:
                 return False
-        return True3
+        return True
 
     def is_word(self):
         pattern = "^[A-Za-z]+$"

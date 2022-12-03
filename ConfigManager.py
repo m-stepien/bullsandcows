@@ -12,12 +12,6 @@ class ConfigManager:
         root = tree.getroot()
         new_config = Et.Element("configuration")
         new_config.attrib["version"] = "current"
-        gui_et = Et.Element("gui")
-        if config.gui is not None:
-            gui_et.text = config.gui
-        else:
-            gui_et.text = self.config.gui
-        new_config.append(gui_et)
         diff_et = Et.Element("difficulty_level")
         if config.difficulty_level is not None:
             diff_et.text = config.difficulty_level

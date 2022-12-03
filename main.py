@@ -25,14 +25,13 @@ if __name__ == '__main__':
                 if type(result) == bool:
                     config_manager.reset_config()
                 else:
-                    gui_conf = result[0]
-                    diff_lvl = result[1]
-                    num_try = result[2]
-                    if gui_conf is None and diff_lvl is None and num_try is None:
+                    diff_lvl = result[0]
+                    num_try = result[1]
+                    if diff_lvl is None and num_try is None:
                         continue
                     else:
                         new_conf = Config()
-                        new_conf.set_from_values(gui_conf, diff_lvl, num_try)
+                        new_conf.set_from_values(diff_lvl, num_try)
                         config_manager.write_config(new_conf)
 
         elif option == "4":
