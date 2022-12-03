@@ -1,7 +1,7 @@
 <configurations>
     <configuration version="default">
-        <gui>Terminal</gui>
+        <gui>terminal</gui>
         <difficulty_level>easy</difficulty_level>
         <number_of_try>1</number_of_try>
     </configuration>
-<configuration version="current"><gui>Window</gui><difficulty_level>hard</difficulty_level><number_of_try>6</number_of_try></configuration></configurations>
+<configuration version="current"><gui>window</gui><difficulty_level>hard</difficulty_level><number_of_try>19</number_of_try></configuration></configurations>

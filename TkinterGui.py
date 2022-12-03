@@ -5,6 +5,7 @@ from tkinter.ttk import *
 class TkinterGui:
     def __init__(self):
         self.root = Tk()
+        self.name = "window"
         self.root.title("Bulls and Cows")
         self.root.geometry("400x300")
         self.root.iconbitmap("resource/icon.ico")
@@ -71,7 +72,7 @@ class TkinterGui:
     def stay_active(self):
         self.root.mainloop()
 
-    def game_screen(self, try_remind, word, result, valid):
+    def game_screen(self, try_remind, word, result, not_valid):
         self.is_game_screen = True
         fr_button = Frame(self.root, width=25, height=15)
         photo = PhotoImage(file="resource/back_arr.png")
@@ -90,7 +91,7 @@ class TkinterGui:
         frame_result.pack(side=TOP, anchor=NW)
         label_result.pack()
 
-        if valid:
+        if not_valid:
             self.fr_valid = Frame(self.root)
             self.lb_valid = Label(self.fr_valid, text="Nie mozna udzielic takiej odpowiedzi")
             self.fr_valid.pack(side=TOP)
@@ -175,10 +176,10 @@ class TkinterGui:
         fr_bt3 = Frame(self.root, width=400, height=50)
         fr_bt4 = Frame(self.root, width=400, height=50)
 
-        bt1 = Button(fr_bt1, text="Nowa gra", command=lambda: self.choose_option(1))
-        bt2 = Button(fr_bt2, text="Zasady gry", command=lambda: self.choose_option(2))
-        bt3 = Button(fr_bt3, text="Ustawienia", command=lambda: self.choose_option(3))
-        bt4 = Button(fr_bt4, text="Zakoncz gre", command=lambda: self.choose_option(4))
+        bt1 = Button(fr_bt1, text="Nowa gra", command=lambda: self.choose_option("1"))
+        bt2 = Button(fr_bt2, text="Zasady gry", command=lambda: self.choose_option("2"))
+        bt3 = Button(fr_bt3, text="Ustawienia", command=lambda: self.choose_option("3"))
+        bt4 = Button(fr_bt4, text="Zakoncz gre", command=lambda: self.choose_option("4"))
         fr_bt1.pack(fill=BOTH, expand=True)
         fr_bt2.pack(fill=BOTH, expand=True)
         fr_bt3.pack(fill=BOTH, expand=True)
@@ -228,7 +229,7 @@ class TkinterGui:
         fr_config_option = Frame(self.root)
         self.new_gui_conf = StringVar()
         gui_choose = Combobox(fr_config_option, textvariable=self.new_gui_conf)
-        gui_choose['values'] = ("Terminal", "Window")
+        gui_choose['values'] = ("terminal", "window")
         gui_choose.current(1)
         fr_config_option.pack()
         gui_choose.pack()

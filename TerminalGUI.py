@@ -7,12 +7,19 @@ class TerminalGUI:
         self.num = None
         self.stats = None
         self.l_word = None
+        self.name = "terminal"
 
     def set_guess_result(self, num, stats, l_word):
         self.num = num
         self.stats = stats
         self.l_word = l_word
+    def game_screen(self, num, stats, l_word, not_valid):
 
+        self.set_guess_result(num, stats, l_word)
+        if not_valid:
+            print("Niepoprawna odpowiedz sprobuj jeszcze raz")
+        self.show_result_of_guess()
+        return input()
     def clean_screen(func):
         def with_reload(self, *args):
             if os.getenv("PYCHARM_HOSTED"):
@@ -34,25 +41,23 @@ class TerminalGUI:
         print(self.stats)
         print(f"Dlugosc slowa {self.l_word}")
 
-    def get_answer(self):
-        return input()
-    @clean_screen
-    def get_file_name(self):
-        print("Podaj nazwe pliku")
-        return input()
+
+
 
     @clean_screen
-    def showStartMenu(self):
+    def show_start_menu(self):
         print("1. Nowa gra\n2. Zasady gry\n3. Ustawienia\n4. Zakoncz gre")
         response = input()
         return response
     @clean_screen
-    def show_win_screen(self, is_win, word, num_try):
+    def show_end_screen(self, is_win, word, num_try):
         self.create_result_of_game(is_win, word, num_try)
         print(self.game_result_str)
         print("Jesli chcesz zapisac wynik kliknij 1")
         want_save = True if input() == "1" else False
-        return want_save
+        if want_save:
+            print("Podaj nazwe pliku")
+            return input()
 
     def create_result_of_game(self, is_win, word, num_try):
         header = "Zwyciestwo" if is_win else "Przegrana"
@@ -135,5 +140,4 @@ liczba przy Bulls bedzie taka sama jak dlugosc slowa wylosowanego przez komputer
 
     def file_already_exist(self):
         print("Plik o takiej nazwie juz istnieje.\nJesli chcesz go nadpisac wcisniej 1")
-        print("fdaljkfnad")
         return True if input() == "1" else False
