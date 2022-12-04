@@ -7,6 +7,7 @@ from Validator import Validator
 from Game import Game
 from TkinterGui import TkinterGui
 import os
+import sys
 import tkinter
 
 was_change = False
@@ -46,9 +47,16 @@ if __name__ == '__main__':
                         config_manager.write_config(new_conf)
                         print(config.gui)
                         if config.gui == "terminal":
-                            gui = TerminalGUI()
+                            os.system("python main.py")
+                            del gui
+                            os._exit(0)
                         else:
-                            gui = TkinterGui()
+                            gui.root.quit()
+                            gui.root.destroy()
+                            del gui
+                            os.system("python main.py")
+                            os._exit(0)
+
 
         elif option == "4":
             exit(0)
