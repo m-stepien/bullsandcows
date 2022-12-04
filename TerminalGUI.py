@@ -13,13 +13,15 @@ class TerminalGUI:
         self.num = num
         self.stats = stats
         self.l_word = l_word
-    def game_screen(self, num, stats, l_word, not_valid):
 
-        self.set_guess_result(num, stats, l_word)
+    def game_screen(self, num, word, stats, not_valid):
+
+        self.set_guess_result(num, stats, len(word))
+        self.show_result_of_guess()
         if not_valid:
             print("Niepoprawna odpowiedz sprobuj jeszcze raz")
-        self.show_result_of_guess()
         return input()
+
     def clean_screen(func):
         def with_reload(self, *args):
             if os.getenv("PYCHARM_HOSTED"):
@@ -29,26 +31,25 @@ class TerminalGUI:
                     os.system("cls")
                 else:
                     os.system("clear")
-            if len(args)==0:
+            if len(args) == 0:
                 return func(self)
             else:
                 return func(self, *args)
 
         return with_reload
+
     @clean_screen
     def show_result_of_guess(self):
         print(f"Try remind:\t{self.num}")
-        print(self.stats)
         print(f"Dlugosc slowa {self.l_word}")
-
-
-
+        print(self.stats)
 
     @clean_screen
     def show_start_menu(self):
         print("1. Nowa gra\n2. Zasady gry\n3. Ustawienia\n4. Zakoncz gre")
         response = input()
         return response
+
     @clean_screen
     def show_end_screen(self, is_win, word, num_try):
         self.create_result_of_game(is_win, word, num_try)
@@ -62,6 +63,7 @@ class TerminalGUI:
     def create_result_of_game(self, is_win, word, num_try):
         header = "Zwyciestwo" if is_win else "Przegrana"
         self.game_result_str = f"{header}\nSlowo:\t{word}\nLiczba prob:\t {num_try}"
+
     @clean_screen
     def show_configuration(self, config):
         print(config)
@@ -123,6 +125,7 @@ class TerminalGUI:
             elif choose == "5":
                 break
         return gui, diff_lvl, num_try
+
     @clean_screen
     def show_game_rule(self):
         print("""
