@@ -8,6 +8,7 @@ class TerminalGUI:
         self.stats = None
         self.l_word = None
         self.name = "terminal"
+        self.opt = True
 
     def set_guess_result(self, num, stats, l_word):
         self.num = num
