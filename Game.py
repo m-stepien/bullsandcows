@@ -14,26 +14,25 @@ class Game:
 
     def gameplay(self):
         i = 0
+        word = self.dictionary.choose_random_word()
+        self.engine.word = word
+        self.validator = Validator(len(self.engine.word))
         result = Stats.Stats(0, 0)
+        valid_fail = False
         while i < self.number_of_try:
-            self.gui.set_guess_result(self.number_of_try - i, result, len(self.engine.word))
-            self.gui.show_result_of_guess()
-            answer = self.gui.get_answer()
+            answer = self.gui.game_screen(self.number_of_try - i, word, result, valid_fail)
+            if valid_fail and self.gui.name == 'window':
+                self.gui.destroy_elems(self.gui.fr_valid, self.gui.lb_valid)
+            valid_fail = False
             if not self.validator.full_word_validation(answer):
-                print("Bledna odpowiedz")
+                valid_fail = True
                 continue
             i += 1
             result = self.engine.round(answer)
-
             if self.engine.is_win(result.bulls):
                 break
 
-        want_save = self.gui.show_win_screen(self.engine.is_win(result.bulls), self.engine.word, i)
+        want_save = self.gui.show_end_screen(self.engine.is_win(result.bulls), word, i)
         if want_save:
-            file_name = self.gui.get_file_name()
-            file_writer = FileWriter.FileWriter(file_name)
-            if file_writer.check_is_file():
-                want_override = self.gui.file_already_exist()
-                if not want_override:
-                    return
+            file_writer = FileWriter.FileWriter(want_save)
             file_writer.write(self.gui.game_result_str)

@@ -1,18 +1,27 @@
 from ConfigManager import ConfigManager
 from Dictionary import Dictionary
+from Config import Config
 from Engine import Engine
 from TerminalGUI import TerminalGUI
 from Game import Game
-from Config import Config
 
+from TkinterGui import TkinterGui
+import os
+
+was_change = False
 if __name__ == '__main__':
     config_manager = ConfigManager(r"config.xml")
     config_manager.read_config()
-    gui = TerminalGUI()
+    config = config_manager.config
+    if config.gui == "terminal":
+        gui = TerminalGUI()
+    else:
+        gui = TkinterGui()
     while True:
         config = config_manager.config
-        dictionary = Dictionary(config.difficulty_level,"resource/dictionary.txt")
-        option = gui.showStartMenu()
+
+        dictionary = Dictionary(config.difficulty_level, "resource/dictionary.txt")
+        option = gui.show_start_menu()
         if option == "1":
             engine = Engine(None)
             game = Game(gui, engine, dictionary, config.number_of_try)
@@ -34,6 +43,17 @@ if __name__ == '__main__':
                         new_conf = Config()
                         new_conf.set_from_values(gui_conf, diff_lvl, num_try)
                         config_manager.write_config(new_conf)
+                        print(config.gui)
+                        if config.gui == "terminal":
+                            os.system("python main.py")
+                            del gui
+                            os._exit(0)
+                        else:
+                            gui.root.quit()
+                            gui.root.destroy()
+                            del gui
+                            os.system("python main.py")
+                            os._exit(0)
 
         elif option == "4":
             exit(0)

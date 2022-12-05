@@ -8,8 +8,8 @@ class Dictionary:
         self.difficulty_level = difficulty_level
         self.filter_dictionary = {
             "easy": lambda: [x for x in self.word_list if len(x) < 5],
-            "medium": lambda: [x for x in self.word_list if 5 <= len(x) <= 8],
-            "hard": lambda: [x for x in self.word_list if len(x) >= 9]
+            "medium": lambda: [x for x in self.word_list if 5 <= len(x) < 8],
+            "hard": lambda: [x for x in self.word_list if len(x) >= 8]
         }
 
     def read_from_file(self):
@@ -22,7 +22,10 @@ class Dictionary:
         except (FileExistsError, FileNotFoundError) as err:
             print("Plik ze sciezki nie istnieje lub zostal uszkodzony")
             exit(1)
+<<<<<<< HEAD
 
+=======
+>>>>>>> tkinter_gui
     def get_filter_word_list(self):
         return self.filter_dictionary[self.difficulty_level]()
 
