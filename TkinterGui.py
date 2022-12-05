@@ -7,7 +7,7 @@ class TkinterGui:
         self.root = Tk()
         self.name = "window"
         self.root.title("Bulls and Cows")
-        self.root.geometry("400x300")
+        self.root.geometry("400x320")
         self.root.iconbitmap("resource/icon.ico")
         self.opt = None
         self.answer = None
@@ -116,18 +116,23 @@ class TkinterGui:
 
     def show_game_rule(self):
         GAME_RULE = """
-        Tekstowa gra w wktorej komputer (Host) losuje slowo, ktore
-        jest izogramem (izogram jest to wyraz w ktorym nie powtarzaja sie
-        zadne litery) i informuje uzytkownika (Guesser) o ilosci liter
-        w slowie. Uzytkownik (Guesser) stara sie zgadnac co to za slowo.
-        Komputer (Host) po kazdej probie zwraca liczbe Cows & Bulls. 
-        Liczba przy slowie Cows oznacza litere wystepujaca w slowie lecz
-        na zlej pozycji, liczba przy slowie Bulls oznacza poprawna litere
-        na poprawnej pozycji. Gra konczy sie kiedy liczba przy Bulls
-        bedzie taka sama jak dlugosc slowa wylosowanego przez komputer.
+        Tekstowa gra w wktorej komputer (Host)
+        losuje slowo, ktore jest izogramem (izogram
+        jest to wyraz w ktorym nie powtarzaja sie
+        zadne litery) i informuje uzytkownika 
+        (Guesser) o ilosci liter w slowie. 
+        Uzytkownik (Guesser) stara sie zgadnac co 
+        to za slowo. Komputer (Host) po kazdej 
+        probie zwraca liczbe Cows & Bulls. Liczba
+        przy slowie Cows oznacza litere wystepujaca
+        w slowie lecz na zlej pozycji, liczba przy
+        slowie Bulls oznacza poprawna litere na 
+        poprawnej pozycji. Gra konczy sie kiedy 
+        liczba przy Bulls bedzie taka sama jak 
+        dlugosc slowa wylosowanego przez komputer.
         """
-        fr_info = Frame(self.root, width=400, height=185)
-        info = Label(fr_info, text=GAME_RULE, font=("Arial", 15), justify=CENTER, anchor=CENTER)
+        fr_info = Frame(self.root)
+        info = Label(fr_info, text=GAME_RULE, font=("Arial", 12), justify=CENTER, anchor=CENTER)
         fr_button = Frame(self.root, width=25, height=15)
         photo = PhotoImage(file="resource/back_arr.png")
         photoimage = photo.subsample(30, 30)

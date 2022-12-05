@@ -3,12 +3,9 @@ from Dictionary import Dictionary
 from Config import Config
 from Engine import Engine
 from TerminalGUI import TerminalGUI
-from Validator import Validator
 from Game import Game
 from TkinterGui import TkinterGui
 import os
-import sys
-import tkinter
 
 was_change = False
 if __name__ == '__main__':
