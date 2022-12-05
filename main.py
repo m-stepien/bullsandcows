@@ -42,7 +42,6 @@ if __name__ == '__main__':
                         new_conf = Config()
                         new_conf.set_from_values(gui_conf, diff_lvl, num_try)
                         config_manager.write_config(new_conf)
-                        print(config.gui)
                         if config.gui == "terminal":
                             os.system("python main.py")
                             del gui

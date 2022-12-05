@@ -14,7 +14,6 @@ class ConfigManager:
         new_config.attrib["version"] = "current"
         gui_et = Et.Element("gui")
         if config.gui is not None:
-            print(config.gui)
             gui_et.text = config.gui
         else:
             gui_et.text = self.config.gui
