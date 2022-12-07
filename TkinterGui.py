@@ -14,6 +14,7 @@ class TkinterGui:
         self.fr_valid = None
         self.is_game_screen = False
         self.want_save_option = False
+        self.file_name = None
         self.IGNORE_KEY = (27, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123,
                            44, 46, 8, 16, 37, 38, 39, 40, 17, 18, 91, 20, 9)
 

@@ -1,6 +1,3 @@
-import xml.etree.ElementTree as ET
-
-
 class Config:
     def __init__(self):
         self.gui = None

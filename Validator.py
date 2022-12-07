@@ -30,4 +30,3 @@ class Validator:
             return self.l_word == len_answer
         except TypeError:
             raise TypeError
-

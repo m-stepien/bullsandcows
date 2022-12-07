@@ -22,6 +22,7 @@ class Dictionary:
         except (FileExistsError, FileNotFoundError) as err:
             print("Plik ze sciezki nie istnieje lub zostal uszkodzony")
             exit(1)
+
     def get_filter_word_list(self):
         return self.filter_dictionary[self.difficulty_level]()
 

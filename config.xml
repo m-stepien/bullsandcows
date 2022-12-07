@@ -2,7 +2,6 @@
     <configuration version="default">
         <gui>terminal</gui>
         <difficulty_level>easy</difficulty_level>
-        <number_of_try>1</number_of_try>
+        <number_of_try>10</number_of_try>
     </configuration>
-<configuration version="current"><gui>window</gui><difficulty_level>easy</difficulty_level><number_of_try>2</number_of_try></configuration></configurations>
-
+    <configuration version="current"><gui>window</gui><difficulty_level>medium</difficulty_level><number_of_try>3</number_of_try></configuration></configurations>

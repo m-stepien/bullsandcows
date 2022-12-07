@@ -8,21 +8,22 @@ class Game:
         self.gui = gui
         self.engine = engine
         self.dictionary = dictionary
-        self.engine.word = self.dictionary.choose_random_word()
-        self.validator = Validator(len(self.engine.word))
+        self.engine.word = None
+        self.validator = None
         self.number_of_try = int(number_of_try)
 
     def gameplay(self):
         i = 0
         word = self.dictionary.choose_random_word()
         self.engine.word = word
+        self.validator = Validator(len(self.engine.word))
         result = Stats.Stats(0, 0)
         valid_fail = False
         while i < self.number_of_try:
             answer = self.gui.game_screen(self.number_of_try - i, word, result, valid_fail)
             if self.gui.opt is None:
                 break
-            if valid_fail:
+            if valid_fail and self.gui.name == 'window':
                 self.gui.destroy_elems(self.gui.fr_valid, self.gui.lb_valid)
             valid_fail = False
             if not self.validator.full_word_validation(answer):
